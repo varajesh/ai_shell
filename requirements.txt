@@ -1,0 +1,31 @@
+# AI Shell Requirements
+# Install these packages to run AI Shell
+
+# Core dependencies
+langchain>=0.1.0
+openai>=1.0.0
+anthropic>=0.8.0
+
+# CLI and interface
+prompt-toolkit>=3.0.0
+colorama>=0.4.0
+
+# Configuration and data handling  
+PyYAML>=6.0
+python-dotenv>=1.0.0
+
+# Async support
+aiofiles>=23.0.0
+
+# Optional: for enhanced functionality
+psutil>=5.9.0  # For system monitoring
+rich>=13.0.0   # For enhanced terminal output (optional)
+
+# Development dependencies (optional)
+pytest>=7.0.0
+pytest-asyncio>=0.21.0
+black>=23.0.0
+flake8>=6.0.0
+
+# SAP genai SDK
+sap-ai-sdk-gen==5.7.5

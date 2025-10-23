@@ -1,0 +1,68 @@
+# AI Shell Configuration
+# Edit this file to configure your AI Shell settings
+
+llm:
+  # LLM Provider: 'openai' or 'anthropic'
+  provider: aicore
+  
+  # Model name (e.g., 'gpt-3.5-turbo', 'gpt-4', 'claude-3-sonnet-20240229')
+  model: gpt-4o
+  
+  # API Key - You can also set this via environment variables:
+  # - For OpenAI: OPENAI_API_KEY
+  # - For Anthropic: ANTHROPIC_API_KEY
+  api_key: ""
+  
+  # Model parameters
+  temperature: 0.1
+  max_tokens: 1000
+  timeout: 30
+
+safety:
+  # Always ask for confirmation before running commands
+  always_confirm: true
+  
+  # Require explicit confirmation for dangerous commands
+  dangerous_commands_require_explicit_confirm: true
+  
+  # Commands that are completely blocked
+  blocked_commands:
+    - "rm -rf /"
+    - "chmod -R 777 /"
+    - "dd if=/dev/zero of=/dev/sda"
+
+monitoring:
+  # Default interval for monitoring tasks (seconds)
+  default_interval: 5
+  
+  # Maximum number of background tasks allowed
+  max_background_tasks: 10
+  
+  # Directory for monitoring task log files - will be created if it doesn't exist
+  # NOTE: Regular commands output to console by default. Only monitoring tasks redirect to this directory.
+  log_directory: logs/
+  
+  # Task-specific logging
+  task_logging:
+    enabled: true
+    max_log_file_size_mb: 10
+    max_log_files_per_task: 5
+    log_level: info  # debug, info, warning, error
+  
+  # Notification settings
+  notifications:
+    enabled: true
+    method: console  # console, email, webhook
+
+shell:
+  # Prompt style
+  prompt_style: ai-shell
+  
+  # Number of commands to keep in history
+  history_size: 1000
+  
+  # Enable auto-suggestions from history
+  auto_suggest: true
+  
+  # Enable colored output
+  colored_output: true
