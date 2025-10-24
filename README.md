@@ -18,7 +18,7 @@ A powerful natural language command line interface utility that converts your pl
 
 - Python 3.8 or higher
 - An API key for OpenAI or Anthropic
-
+- If using Generative AI Hub in SAP AI Core for model access (providers OpenAI, Amazon, Google), ensure you have access and the necessary credentials. For documentation, refer to https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/quick-start?locale=en-US and for sdk documentation refer to https://pypi.org/project/sap-ai-sdk-gen/
 ### Install from source
 
 ```bash
