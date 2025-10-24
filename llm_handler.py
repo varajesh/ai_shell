@@ -11,6 +11,8 @@ import re
 from langchain_core.language_models.llms import LLM
 from langchain_core.prompts import PromptTemplate
 from langchain_core.messages import HumanMessage, SystemMessage
+from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
+from gen_ai_hub.proxy import set_proxy_version
 
 from config_manager import ConfigManager
 
@@ -32,7 +34,7 @@ class LLMHandler:
         model = llm_config.get('model', 'gpt-3.5-turbo')
         api_key = llm_config.get('api_key')
         
-        if not api_key:
+        if provider != 'aicore' and not api_key:
             raise ValueError(f"API key not found for {provider}. Please check your configuration.")
         
         if provider == 'openai':
@@ -68,6 +70,12 @@ class LLMHandler:
                     temperature=llm_config.get('temperature', 0.1),
                     max_tokens=llm_config.get('max_tokens', 1000)
                 )
+        elif provider == 'aicore':
+            from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
+            set_proxy_version('gen-ai-hub')
+            proxy_client = get_proxy_client()
+            chat_llm = ChatOpenAI(proxy_model_name=model, proxy_client=proxy_client)
+            return chat_llm
         else:
             raise ValueError(f"Unsupported LLM provider: {provider}")
     
